@@ -12,6 +12,8 @@ import org.junit.Test
 
 class MainActivityTest : BaseTestClass(){
 
+//    TODO (1): add testImageResourceID
+//    TODO(2): addtestCorrectImageShown
 
     @Rule @JvmField
     val rule = ActivityTestRule(MainActivity::class.java)
@@ -29,4 +31,5 @@ class MainActivityTest : BaseTestClass(){
     fun clickRollButton() {
         onView(withId(R.id.button)).perform(click())
     }
+
 }
