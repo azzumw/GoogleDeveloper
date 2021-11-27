@@ -2,7 +2,7 @@ package com.example.diceroller
 
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -14,22 +14,20 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var dice:Dice
     private lateinit var button :Button
-    private lateinit var textView: TextView
+    private lateinit var imageView: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         button = findViewById(R.id.button)
-        textView = findViewById(R.id.textView)
+        imageView = findViewById(R.id.diceImageView)
         dice = Dice()
 
         button.setOnClickListener { rollDice() }
     }
 
-    fun rollDice(){
-        val num = dice.roll()
-
-        textView.text = num.toString()
+    private fun rollDice(){
+        imageView.setImageResource(dice.roll())
     }
 }

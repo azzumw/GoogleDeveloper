@@ -16,12 +16,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/diceImageView" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/diceImageView"
         android:layout_width="162dp"
-        android:layout_height="129dp"
+        android:layout_height="200dp"
         android:layout_marginTop="192dp"
         android:contentDescription="@string/dice_image_text"
         app:layout_constraintEnd_toEndOf="parent"

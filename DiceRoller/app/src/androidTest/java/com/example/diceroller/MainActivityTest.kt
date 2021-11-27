@@ -21,7 +21,7 @@ class MainActivityTest : BaseTestClass(){
     @Test
     fun checkTextViewIsEmpty() {
 
-        onView(withId(R.id.textView))
+        onView(withId(R.id.diceImageView))
             .check(matches(withText("")))
     }
 
