@@ -16,7 +16,7 @@ class MainActivityTest : BaseTestClass(){
     @Rule @JvmField
     val rule = ActivityTestRule(MainActivity::class.java)
 //    @get:Rule
-//    val scenarioRule = ActivityScenarioRule(MainActivity::class.java).scenario.moveToState(Lifecycle.State.RESUMED)
+//    val scenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
     fun checkTextViewIsEmpty() {
