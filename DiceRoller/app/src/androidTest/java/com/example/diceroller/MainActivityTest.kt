@@ -1,19 +1,18 @@
 package com.example.diceroller
 
-import androidx.test.core.app.ActivityScenario.launch
-import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.example.diceroller.CustomMatchers.withDrawable
 import org.junit.Rule
 import org.junit.Test
 
 
 class MainActivityTest : BaseTestClass(){
 
-//    TODO (1): add testImageResourceID
+    private val diceImageView = viewWithId(R.id.diceImageView)
+    private val rollButton = viewWithId(R.id.button)
 //    TODO(2): addtestCorrectImageShown
 
     @get:Rule
@@ -21,15 +20,18 @@ class MainActivityTest : BaseTestClass(){
 
     @Test
     fun checkTextViewIsEmpty() {
-//        launch(MainActivity::class.java)
-        onView(withId(R.id.diceImageView))
-            .check(matches(withContentDescription(R.string.dice_image_text)))
+        diceImageView
+            .check(matches(isDisplayed()))
     }
 
     @Test
     fun clickRollButton() {
-        launch(MainActivity::class.java)
-        onView(withId(R.id.button)).perform(click())
+        rollButton.perform(click())
+    }
+
+    @Test
+    fun test_correctImageResIdShown(){
+        diceImageView.check(matches(withDrawable(R.drawable.dice_1)))
     }
 
 }

@@ -1,11 +1,9 @@
 package com.example.diceroller
 
 import android.util.Log
+import androidx.lifecycle.ViewModel
 
-class Dice {
-    private val _sides : Int
-    get() = 6
-    val sides = _sides
+object Dice : ViewModel(){
 
     fun roll() : Int {
         val rand = (1..6).random()
@@ -20,4 +18,5 @@ class Dice {
         }
 
     }
+
 }
