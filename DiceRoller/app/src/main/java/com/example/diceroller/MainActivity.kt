@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 private const val DICE_NUM = "DICE_NUM"
 class MainActivity : AppCompatActivity() {
 
-
     private var currentNumber = R.drawable.dice_1
     private lateinit var button :Button
     private lateinit var imageView: ImageView
