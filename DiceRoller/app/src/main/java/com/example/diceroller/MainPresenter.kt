@@ -1,15 +1,10 @@
 package com.example.diceroller
 
-import android.util.Log
-
-class MainPresenter() {
+class MainPresenter(private val dice:Dice) {
 
     fun roll() : Int {
 
-
-        Log.e(this.javaClass.canonicalName, Dice.getRandom().toString())
-
-        return when(Dice.getRandom()){
+        return when(dice.getRandom()){
             1 -> R.drawable.dice_1
             2 -> R.drawable.dice_2
             3 -> R.drawable.dice_3

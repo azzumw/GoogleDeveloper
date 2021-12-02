@@ -1,9 +1,8 @@
 package com.example.diceroller
 
-object Dice{
+class Dice{
 
-    internal const val sides:Int = 6
-
+    internal val sides:Int = 6
 
     fun getRandom() = (1..sides).random()
 

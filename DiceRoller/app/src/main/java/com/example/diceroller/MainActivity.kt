@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.button)
         imageView = findViewById(R.id.diceImageView)
 
-        mainPresenter = MainPresenter()
+        mainPresenter = MainPresenter(Dice())
 
         if(savedInstanceState!=null){
             currentNumber = savedInstanceState.getInt(DICE_NUM)
