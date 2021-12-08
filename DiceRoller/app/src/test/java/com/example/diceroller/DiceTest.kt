@@ -8,11 +8,15 @@ import org.junit.Test
 
 @SmallTest
 class DiceTest {
+<<<<<<< Updated upstream
     private lateinit var dice:Dice
+=======
+    private lateinit var dice: RealDice
+>>>>>>> Stashed changes
 
     @Before
     fun setUp(){
-        dice = Dice()
+        dice = RealDice()
     }
     @Test
     fun getSides() {
@@ -21,7 +25,7 @@ class DiceTest {
 
     @Test
     fun checkDiceRangeIsBetween1And6(){
-        val random = dice.getRandom()
+        val random = dice.roll()
         assertThat(random).isIn(1..6)
     }
 
