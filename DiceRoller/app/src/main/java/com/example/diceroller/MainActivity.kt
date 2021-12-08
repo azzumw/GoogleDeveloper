@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.button)
         imageView = findViewById(R.id.diceImageView)
 
-        mainPresenter = MainPresenter(Dice())
+        mainPresenter = MainPresenter(RealDice())
 
         if(savedInstanceState!=null){
             currentNumber = savedInstanceState.getInt(DICE_NUM)
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun rollDice(){
-        currentNumber = mainPresenter.roll()
+        currentNumber = mainPresenter.getDrawableIdForDice()
         setImage(currentNumber)
     }
 
