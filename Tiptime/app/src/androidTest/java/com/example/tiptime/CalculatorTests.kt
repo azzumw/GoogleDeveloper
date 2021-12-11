@@ -41,7 +41,9 @@ class CalculatorTests {
         onView(withId(R.id.cost_of_service)).perform(typeText("50.00"))
 
         //When.
-        onView(withId(R.id.option_eighteen_percent)).perform(click()).check(matches(isChecked()))
+        onView(withId(R.id.option_eighteen_percent)).
+        perform(click()).
+        check(matches(isChecked()))
 
 
         onView(withId(R.id.calculate_button)).perform(click())
