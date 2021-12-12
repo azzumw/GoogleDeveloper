@@ -2,6 +2,7 @@ package com.example.affirmations
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.affirmations.adapter.ItemAdapter
 import com.example.affirmations.data.Datasource
 import com.example.affirmations.databinding.ActivityMainBinding
 
@@ -15,7 +16,11 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        binding.textView.text = Datasource().loadAffirmations().size.toString()
+        binding.recyclerView.adapter = ItemAdapter(this,Datasource().loadAffirmations())
+
+        // Use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        binding.recyclerView.setHasFixedSize(true)
 
     }
 }
