@@ -6,7 +6,6 @@ import com.example.affirmations.model.Affirmation
 import org.junit.Test
 
 import org.junit.Assert.*
-import org.mockito.MockedConstruction
 import org.mockito.Mockito.mock
 
 /**

@@ -2,6 +2,7 @@ package com.example.affirmations
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -26,5 +27,11 @@ class AffirmationsListTests {
             .check(matches(isDisplayed()))
     }
 
+    @Test
+    fun swipe_up_position_5() {
+        onView(withId(R.id.recyclerView)).perform(swipeUp())
 
+        //passes when scrollbars attribute added to the xml
+        onView(withText(R.string.affirmation4)).check(matches(isDisplayed()))
+    }
 }
