@@ -30,7 +30,6 @@ class AffirmationsListTests {
     @Test
     fun swipe_up_position_5() {
         onView(withId(R.id.recyclerView)).perform(swipeUp())
-
         //passes when scrollbars attribute added to the xml
         onView(withText(R.string.affirmation4)).check(matches(isDisplayed()))
     }
