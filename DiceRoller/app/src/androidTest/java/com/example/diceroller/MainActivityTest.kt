@@ -5,7 +5,6 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import com.example.diceroller.CustomMatchers.withDrawable
 import org.junit.Before
 import org.junit.Test
@@ -25,7 +24,8 @@ class MainActivityTest : BaseTestClass(){
 //    val scenarioRule = ActivityScenarioRule(MainActivity::class.java)
     @Before
     fun setUp() {
-        val applicationContext = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext
+        val applicationContext = appContext.applicationContext
+
         val diceApplication = applicationContext as DiceApplication
 
         diceApplication.dice = fakeDice
