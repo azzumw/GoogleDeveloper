@@ -1,5 +1,6 @@
 package com.example.wordstage2
 
+import android.content.Context
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragment
 import androidx.fragment.app.testing.launchFragmentInContainer
@@ -8,6 +9,7 @@ import androidx.navigation.testing.TestNavHostController
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -30,7 +32,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class NavigationTests {
 
-    val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+    private val appContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
 
     private lateinit var navController: TestNavHostController
 
@@ -39,10 +41,10 @@ class NavigationTests {
     @Before
     fun setUp() {
         // 1. get a reference to TestNavHostController
-        val navController = TestNavHostController(appContext)
+        navController = TestNavHostController(appContext)
 
         // 2. launch fragment passing in the theme Id so the test does not crash
-        letterListScenario = launchFragmentInContainer<LetterListFragment>(themeResId = R.style.Theme_WordStage2)
+        letterListScenario = launchFragmentInContainer(themeResId = R.style.Theme_WordStage2)
 
         // 3. which navGraph to use
         letterListScenario.onFragment{
@@ -69,6 +71,15 @@ class NavigationTests {
          * we can check to make sure that the current navigation controller's destination has the ID of the fragment
          * we expect to be in. This approach is significantly more reliable than the aforementioned.
          * */
+
+        assertEquals(navController.currentDestination?.id,R.id.wordListFragment)
+    }
+
+    @Test
+    fun navigate_to_word_3_nav_component() {
+        onView(withId(R.id.recycler_view))
+            .perform(RecyclerViewActions.actionOnItemAtPosition<LetterAdapter.LetterViewHolder>(3,
+                click()))
 
         assertEquals(navController.currentDestination?.id,R.id.wordListFragment)
     }

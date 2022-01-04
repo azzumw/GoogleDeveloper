@@ -55,6 +55,7 @@ dependencies {
     //navigation
     androidTestImplementation 'androidx.navigation:navigation-testing:2.3.5'
 
+    //fragment testing
     debugImplementation 'androidx.fragment:fragment-testing:1.4.0'
 
     //navigation jetpack
