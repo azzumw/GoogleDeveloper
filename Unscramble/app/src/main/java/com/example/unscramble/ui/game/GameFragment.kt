@@ -2,6 +2,7 @@ package com.example.unscramble.ui.game
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,10 @@ import com.example.unscramble.databinding.FragmentGameBinding
  */
 class GameFragment : Fragment() {
 
+    //Property delegation in Kotlin helps you to handoff the getter-setter responsibility to a different class
+    //This class (called delegate class) provides getter and setter functions of the property and handles its changes.
+    //we get the same viewModel instance because it is retained.
+    private val viewModel: GameViewModel by viewModels()
     private var score = 0
     private var currentWordCount = 0
     private var currentScrambledWord = "test"
