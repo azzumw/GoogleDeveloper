@@ -138,7 +138,6 @@ class GameFragment : Fragment() {
         updateNextWordOnScreen()
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         Log.e(TAG,"DestroyView")
