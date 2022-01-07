@@ -49,7 +49,7 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.e(TAG,"OnViewCreated")
         // Update the UI
-        updateNextWordOnScreen()
+
 
         //set up click listeners
         binding.submit.setOnClickListener { onSubmitWord() }
@@ -65,7 +65,7 @@ class GameFragment : Fragment() {
         if(viewModel.isUserWordCorrect(userInput)){
             setErrorTextField(false)
             if(viewModel.nextWord()){
-                updateNextWordOnScreen()
+
             }else{
                 showFinalScoreDialog()
             }
@@ -83,20 +83,10 @@ class GameFragment : Fragment() {
     private fun onSkipWord(){
         if(viewModel.nextWord()){
             setErrorTextField(false)
-            updateNextWordOnScreen()
+
         }else{
             showFinalScoreDialog()
         }
-    }
-
-    /**
-    * Displays the next scrambled word on screen.
-    */
-    private fun updateNextWordOnScreen(){
-        binding.textViewUnscrambledWord.text = viewModel.currentScrambledWord
-        binding.wordCount.text = getString(R.string.word_count,viewModel.currentWordCount,
-            MAX_NO_OF_WORDS)
-        binding.score.text = getString(R.string.score,viewModel.score)
     }
 
     private fun setErrorTextField(error:Boolean){
