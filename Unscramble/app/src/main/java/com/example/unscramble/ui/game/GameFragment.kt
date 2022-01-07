@@ -64,9 +64,7 @@ class GameFragment : Fragment() {
         val userInput = binding.textInputEditText.text.toString()
         if(viewModel.isUserWordCorrect(userInput)){
             setErrorTextField(false)
-            if(viewModel.nextWord()){
-
-            }else{
+            if(!viewModel.nextWord()){
                 showFinalScoreDialog()
             }
         }else{
