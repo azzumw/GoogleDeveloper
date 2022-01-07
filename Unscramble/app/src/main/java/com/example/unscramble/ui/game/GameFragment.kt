@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.unscramble.R
 import com.example.unscramble.databinding.FragmentGameBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -37,7 +38,9 @@ class GameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.e(TAG,"OnCreateView - fragment created/recreated")
-        binding = FragmentGameBinding.inflate(inflater,container,false)
+//        binding = FragmentGameBinding.inflate(inflater,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game,container,false)
+
         Log.d(
             TAG, "Word: ${viewModel.currentScrambledWord} " +
                 "Score: ${viewModel.score} WordCount: ${viewModel.currentWordCount}")
@@ -50,7 +53,10 @@ class GameFragment : Fragment() {
         Log.e(TAG,"OnViewCreated")
         // Update the UI
 
+        binding.gameViewModel = viewModel
+        binding.maxNoOfWords = MAX_NO_OF_WORDS
 
+        binding.lifecycleOwner = viewLifecycleOwner
         //set up click listeners
         binding.submit.setOnClickListener { onSubmitWord() }
         binding.skip.setOnClickListener { onSkipWord() }
@@ -61,17 +67,17 @@ class GameFragment : Fragment() {
         //This parameter helps the LiveData to be aware of the GameFragment
         // lifecycle and notify the observer only when the GameFragment is
         // in active states (STARTED or RESUMED).
-        viewModel.currentScrambledWord.observe(viewLifecycleOwner,
-            {it -> binding.textViewUnscrambledWord.text = it } )
+//        viewModel.currentScrambledWord.observe(viewLifecycleOwner,
+//            {it -> binding.textViewUnscrambledWord.text = it } )
 
-        viewModel.score.observe(viewLifecycleOwner,{
-            newScore ->  binding.score.text = getString(R.string.score,newScore)
-        })
+//        viewModel.score.observe(viewLifecycleOwner,{
+//            newScore ->  binding.score.text = getString(R.string.score,newScore)
+//        })
 
-        viewModel.currentWordCount.observe(viewLifecycleOwner,{
-            newWordCount -> binding.wordCount.text =
-            getString(R.string.word_count,newWordCount, MAX_NO_OF_WORDS)
-        })
+//        viewModel.currentWordCount.observe(viewLifecycleOwner,{
+//            newWordCount -> binding.wordCount.text =
+//            getString(R.string.word_count,newWordCount, MAX_NO_OF_WORDS)
+//        })
 
     }
 
