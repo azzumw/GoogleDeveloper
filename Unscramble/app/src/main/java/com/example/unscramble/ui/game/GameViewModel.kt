@@ -15,15 +15,15 @@ class GameViewModel : ViewModel() {
     //backing property
     //inside the class it should be editable and private
     //outside the class it should only be readable and public
-    private var _score = 0
+    private val _score = MutableLiveData<Int>(0)
     //For getter and setter methods, you could override one or both of these methods
     // and provide your own custom behavior. To implement a backing property,
     // you will override the getter method to return a read-only version of your data
-    val score :Int
+    val score :LiveData<Int>
     get() = _score
 
-    private var _currentWordCount = 0
-    val currentWordCount : Int
+    private val _currentWordCount = MutableLiveData(0)
+    val currentWordCount : LiveData<Int>
     get() = _currentWordCount
 
     private val _currentScrambledWord = MutableLiveData<String>()
@@ -48,7 +48,7 @@ class GameViewModel : ViewModel() {
             getNextWord()
         }else{
             _currentScrambledWord.value = String((tempWord))
-            _currentWordCount++
+            _currentWordCount.value = (_currentWordCount.value)?.inc()
             wordsList.add(currentWord)
         }
     }
@@ -58,7 +58,7 @@ class GameViewModel : ViewModel() {
 * Updates the next word.
 */
     fun nextWord(): Boolean {
-        return if (currentWordCount < MAX_NO_OF_WORDS) {
+        return if (currentWordCount.value!! < MAX_NO_OF_WORDS) {
             getNextWord()
             true
         } else false
@@ -73,12 +73,12 @@ class GameViewModel : ViewModel() {
     }
 
     private fun increaseScore() {
-        _score += SCORE_INCREASE
+        _score.value = _score.value?.plus(SCORE_INCREASE)
     }
 
     fun reInitialiseData(){
-        _currentWordCount = 0
-        _score = 0
+        _currentWordCount.value = 0
+        _score.value = 0
         wordsList.clear()
         nextWord()
     }

@@ -56,6 +56,25 @@ class GameFragment : Fragment() {
         binding.skip.setOnClickListener { onSkipWord() }
     }
 
+    override fun onStart() {
+        super.onStart()
+        //This parameter helps the LiveData to be aware of the GameFragment
+        // lifecycle and notify the observer only when the GameFragment is
+        // in active states (STARTED or RESUMED).
+        viewModel.currentScrambledWord.observe(viewLifecycleOwner,
+            {it -> binding.textViewUnscrambledWord.text = it } )
+
+        viewModel.score.observe(viewLifecycleOwner,{
+            newScore ->  binding.score.text = getString(R.string.score,newScore)
+        })
+
+        viewModel.currentWordCount.observe(viewLifecycleOwner,{
+            newWordCount -> binding.wordCount.text =
+            getString(R.string.word_count,newWordCount, MAX_NO_OF_WORDS)
+        })
+
+    }
+
     /**
     * Checks the user's word, and updates the score accordingly.
     * Displays the next scrambled word.
@@ -100,7 +119,7 @@ class GameFragment : Fragment() {
     fun showFinalScoreDialog(){
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.congratulations))
-            .setMessage(getString(R.string.you_scored,viewModel.score))
+            .setMessage(getString(R.string.you_scored,viewModel.score.value))
             .setCancelable(false)
             .setNegativeButton(getString(R.string.exit)){_, _ ->
                 exitGame()
@@ -123,7 +142,6 @@ class GameFragment : Fragment() {
     private fun restartGame() {
         setErrorTextField(false)
         viewModel.reInitialiseData()
-        updateNextWordOnScreen()
     }
 
     override fun onDestroyView() {
