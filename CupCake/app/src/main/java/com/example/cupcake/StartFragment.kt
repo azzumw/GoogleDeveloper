@@ -17,10 +17,6 @@ class StartFragment : Fragment() {
 
     private val sharedViewModel : OrderViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,17 +30,26 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        binding.startFragment = this
         binding.apply {
-            orderOneCupcake.setOnClickListener { orderCupcake(1) }
-            orderSixCupcakes.setOnClickListener { orderCupcake(6) }
-            orderTwelveCupcakes.setOnClickListener { orderCupcake(12) }
+            viewModel = sharedViewModel
+            startFragment = this@StartFragment
+//            orderOneCupcake.setOnClickListener { orderCupcake(1) }
+//            orderSixCupcakes.setOnClickListener { orderCupcake(6) }
+//            orderTwelveCupcakes.setOnClickListener { orderCupcake(12) }
         }
     }
 
     /**
      * Start an order with the desired quantity of cupcakes and navigate to the next screen.
      */
-    private fun orderCupcake(quantity: Int) {
+    fun orderCupcake(quantity: Int) {
+        sharedViewModel.setQuantity(quantity)
+
+        if(sharedViewModel.hasNoFlavorSet()){
+            sharedViewModel.setFlavor(getString(R.string.vanilla))
+        }
+
         val action = StartFragmentDirections.actionStartFragmentToFlavorFragment()
 
         findNavController().navigate(action)

@@ -35,13 +35,13 @@ class FlavorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            nextButton.setOnClickListener {
-                goToNextScreen()
-            }
+            flavorFragment = this@FlavorFragment
+            viewModel = sharedViewModel
+            lifecycleOwner = viewLifecycleOwner
         }
     }
 
-    private fun goToNextScreen(){
+    fun goToNextScreen(){
 
         findNavController().navigate(R.id.action_flavorFragment_to_pickupFragment)
     }

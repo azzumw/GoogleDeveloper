@@ -35,13 +35,13 @@ class PickupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            nextButton.setOnClickListener {
-                goToNextScreen()
-            }
+            pickupFragment = this@PickupFragment
+            viewModel = sharedViewModel
+            lifecycleOwner = viewLifecycleOwner
         }
     }
 
-    private fun goToNextScreen(){
+    fun goToNextScreen(){
         findNavController().navigate(R.id.action_pickupFragment_to_summaryFragment)
     }
 
