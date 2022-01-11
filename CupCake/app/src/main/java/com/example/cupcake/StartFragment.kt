@@ -1,6 +1,7 @@
 package com.example.cupcake
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.cupcake.databinding.FragmentStartBinding
 import com.example.cupcake.viewModel.OrderViewModel
 
+const val TAG_START = "StartFrag"
 class StartFragment : Fragment() {
 
     private var _binding: FragmentStartBinding? = null
@@ -17,12 +19,15 @@ class StartFragment : Fragment() {
 
     private val sharedViewModel : OrderViewModel by activityViewModels()
 
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.e(TAG_START,"onCreate")
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        Log.e(TAG_START,"onCreateView")
         _binding = FragmentStartBinding.inflate(inflater,container, false)
 
         return binding.root
@@ -30,6 +35,7 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.e(TAG_START,"onViewCreated")
 //        binding.startFragment = this
         binding.apply {
             viewModel = sharedViewModel
@@ -58,7 +64,40 @@ class StartFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        Log.e(TAG_START,"onDestroyView")
         _binding = null
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.e(TAG_START,"onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e(TAG_START,"onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e(TAG_START,"onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e(TAG_START,"onStop")
+    }
+
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e(TAG_START,"onDestroy")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.e(TAG_START,"onDetach")
     }
 
 }
