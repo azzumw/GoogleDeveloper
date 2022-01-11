@@ -1,5 +1,6 @@
 package com.example.cupcake
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,6 +44,26 @@ class SummaryFragment : Fragment() {
     }
 
     fun sendOrder(){
+
+        val numberOfCupcakes = sharedViewModel.quantity.value ?: 0
+
+        val orderSummary = getString(
+            R.string.order_details,
+            resources.getQuantityString(R.plurals.cupcakes, numberOfCupcakes, numberOfCupcakes),
+            sharedViewModel.flavor.value.toString(),
+            sharedViewModel.date.value.toString(),
+            sharedViewModel.price.value.toString())
+
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.new_cupcake_order))
+            putExtra(Intent.EXTRA_TEXT, orderSummary)
+        }
+
+        if (activity?.packageManager?.resolveActivity(intent, 0) != null) {
+            startActivity(intent)
+        }
+
         Toast.makeText(context,"Order submitted. hooray!",Toast.LENGTH_SHORT).show()
     }
 
