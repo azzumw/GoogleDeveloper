@@ -30,12 +30,26 @@ class AccompanimentMenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.nextButton.setOnClickListener {
-            gotoNextScreen()
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            accompanimentFragment = this@AccompanimentMenuFragment
+            viewModel = sharedViewModel
+            nextButton.setOnClickListener {
+                gotoNextScreen()
+            }
+
+            cancelButton.setOnClickListener {
+                sharedViewModel.resetOrder()
+            }
         }
     }
 
-    private fun gotoNextScreen(){
+    fun cancelOrder(){
+        sharedViewModel.resetOrder()
+        findNavController().navigate(R.id.action_accompanimentMenuFragment_to_startOrderFragment)
+    }
+
+    fun gotoNextScreen(){
        findNavController().navigate(R.id.action_accompanimentMenuFragment_to_checkoutFragment)
     }
 

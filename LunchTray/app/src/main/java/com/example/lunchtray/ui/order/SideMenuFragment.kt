@@ -28,9 +28,21 @@ class SideMenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.nextButton.setOnClickListener {
-            gotoNextScreen()
+
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            sideFragment = this@SideMenuFragment
+            viewModel = sharedViewModel
+            nextButton.setOnClickListener {
+                gotoNextScreen()
+            }
         }
+
+    }
+
+    fun cancelOrder(){
+        sharedViewModel.resetOrder()
+        findNavController().navigate(R.id.action_sideMenuFragment2_to_startOrderFragment)
     }
 
     fun gotoNextScreen(){

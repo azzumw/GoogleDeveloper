@@ -31,15 +31,21 @@ class EntreeMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.nextButton.setOnClickListener {
-            gotoNextScreen()
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            entreeFragment = this@EntreeMenuFragment
+            viewModel = sharedViewModel
         }
-
     }
 
-    private fun gotoNextScreen(){
+    fun gotoNextScreen(){
         val action = EntreeMenuFragmentDirections.actionEntreeMenuFragmentToSideMenuFragment2()
         findNavController().navigate(action)
+    }
+
+    fun cancelOrder(){
+        sharedViewModel.resetOrder()
+        findNavController().navigate(R.id.action_entreeMenuFragment_to_startOrderFragment)
     }
 
     override fun onDestroyView() {
