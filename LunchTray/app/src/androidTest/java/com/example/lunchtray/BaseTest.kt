@@ -4,15 +4,19 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.core.app.ActivityScenario.launch
+import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 open class BaseTest {
 
+    val context =  InstrumentationRegistry.getInstrumentation().targetContext
 
     fun fullOrderFlow() {
         // Launch the main activity
-        <MainActivity>()
+        launch(MainActivity::class.java)
+
         // Start order
         onView(withId(R.id.startOrderBtn)).perform(click())
         // Select entree item

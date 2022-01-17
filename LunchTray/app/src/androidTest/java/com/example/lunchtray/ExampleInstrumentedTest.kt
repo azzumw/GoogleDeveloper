@@ -17,7 +17,6 @@ import org.junit.Rule
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
-    private lateinit var rule : ActivityScenarioRule
 
 
     @Test
