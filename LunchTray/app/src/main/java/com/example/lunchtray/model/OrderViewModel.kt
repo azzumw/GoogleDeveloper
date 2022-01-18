@@ -46,9 +46,12 @@ class OrderViewModel: ViewModel() {
 
     fun setEntree(mEntree : String){
         if(_entree.value != null){
+            //when user has selected an entree
+                // update the entreePrice
             previousEntreePrice = _entree.value!!.price
 
         }
+
         if (_subtotal.value != null){
             _subtotal.value = _subtotal.value?.minus(previousEntreePrice)
         }
@@ -86,9 +89,8 @@ class OrderViewModel: ViewModel() {
         }
 
         if(_subtotal.value != null){
-            _subtotal.value = _subtotal.value?.minus(previousSidePrice)
+            _subtotal.value = _subtotal.value?.minus(previousAccompanimentPrice)
         }
-
 
         _accompaniment.value = menuItems[accompaniment]
         updateSubtotal(_accompaniment.value!!.price)

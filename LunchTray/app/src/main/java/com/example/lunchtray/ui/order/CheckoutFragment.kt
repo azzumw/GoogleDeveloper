@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.lunchtray.R
 import com.example.lunchtray.databinding.FragmentCheckoutBinding
 import com.example.lunchtray.model.OrderViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class CheckoutFragment : Fragment() {
 
@@ -46,7 +47,7 @@ class CheckoutFragment : Fragment() {
     }
 
     fun submitOrder(){
-        Toast.makeText(context,getString(R.string.submit_order),Toast.LENGTH_SHORT).show()
+        Snackbar.make(binding.root, R.string.submit_order, Snackbar.LENGTH_SHORT).show()
         cancelOrder()
     }
 

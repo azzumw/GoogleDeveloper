@@ -1,19 +1,18 @@
 package com.example.lunchtray
 
-import androidx.fragment.app.testing.launchFragment
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.navigation.Navigation
 import androidx.navigation.testing.TestNavHostController
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.filters.LargeTest
 import com.example.lunchtray.ui.order.*
-import kotlinx.coroutines.newFixedThreadPoolContext
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 
+@LargeTest
 class NavigationTests : BaseTest(){
 
 
