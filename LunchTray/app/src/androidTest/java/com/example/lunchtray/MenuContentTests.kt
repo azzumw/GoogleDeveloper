@@ -7,6 +7,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.filters.LargeTest
+import com.example.lunchtray.ui.order.AccompanimentMenuFragment
 import com.example.lunchtray.ui.order.EntreeMenuFragment
 import com.example.lunchtray.ui.order.SideMenuFragment
 import org.hamcrest.Matchers.containsString
@@ -63,11 +64,14 @@ class MenuContentTests:BaseTest() {
 
     @Test
     fun side_menu_item_content() {
-        launchFragment<SideMenuFragment>(themeResId = R.style.Theme_LunchTray)
+        launchFragmentInContainer<SideMenuFragment>(themeResId = R.style.Theme_LunchTray)
 
-        onView(withId(R.id.salad)).check(matches(withText(containsString("Summer Salad"))))
+        onView(withId(R.id.salad))
+            .check(matches(withText(containsString("Summer Salad"))))
+
         onView(withId(R.id.salad_description))
             .check(matches(withText(containsString("Heirloom tomatoes"))))
+
         onView(withId(R.id.salad_price))
             .check(matches(withText(containsString("$2.50"))))
 
@@ -105,7 +109,7 @@ class MenuContentTests:BaseTest() {
      */
     @Test
     fun accompaniment_menu_item_content() {
-        launchFragment<SideMenuFragment>(themeResId = R.style.Theme_LunchTray)
+        launchFragmentInContainer<AccompanimentMenuFragment>(themeResId = R.style.Theme_LunchTray)
         // Check the bread item
         onView(withId(R.id.bread))
             .check(matches(withText(containsString("Lunch Roll"))))
