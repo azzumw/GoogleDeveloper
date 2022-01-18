@@ -5,18 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.lunchtray.R
 import com.example.lunchtray.databinding.FragmentStartOrderBinding
-import com.example.lunchtray.model.OrderViewModel
 
 class StartOrderFragment : Fragment() {
     private var _binding : FragmentStartOrderBinding? = null
     private val binding get() = _binding!!
-
-    private val sharedViewModel : OrderViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,5 +37,4 @@ class StartOrderFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }
