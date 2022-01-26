@@ -1,5 +1,6 @@
 package com.example.lunchtray
 
+import android.content.Context
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -11,7 +12,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 open class BaseTest {
 
-    val context =  InstrumentationRegistry.getInstrumentation().targetContext
+    val context: Context =  InstrumentationRegistry.getInstrumentation().targetContext
 
     fun fullOrderFlow() {
         // Launch the main activity
