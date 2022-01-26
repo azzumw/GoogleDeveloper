@@ -23,10 +23,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         button = findViewById(R.id.button)
         imageView = findViewById(R.id.diceImageView)
 
-        mainPresenter = MainPresenter(RealDice())
+        mainPresenter = MainPresenter((applicationContext as DiceApplication).dice)
 
         if(savedInstanceState!=null){
             currentNumber = savedInstanceState.getInt(DICE_NUM)

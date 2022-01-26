@@ -8,11 +8,8 @@ import org.junit.Test
 
 @SmallTest
 class DiceTest {
-<<<<<<< Updated upstream
-    private lateinit var dice:Dice
-=======
+
     private lateinit var dice: RealDice
->>>>>>> Stashed changes
 
     @Before
     fun setUp(){
