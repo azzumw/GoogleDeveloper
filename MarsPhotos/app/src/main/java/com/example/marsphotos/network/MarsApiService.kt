@@ -33,3 +33,14 @@ interface MarsApiService {
     @GET("photos")
     fun getPhotos():String
 }
+
+/**
+ * initialize the Retrofit service
+ */
+object MarsApi {
+ val retrofitService : MarsApiService by lazy {
+     /**
+      * Initialize the retrofitService variable using the retrofit.create() method with the MarsApiService interface.*/
+     retrofit.create(MarsApiService::class.java)
+ }
+}
