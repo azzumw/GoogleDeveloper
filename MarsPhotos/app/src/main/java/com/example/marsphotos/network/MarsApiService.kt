@@ -31,7 +31,7 @@ interface MarsApiService {
      * Use the @GET annotation to tell Retrofit that this is GET request, and specify endpoint
      */
     @GET("photos")
-    fun getPhotos():String
+    suspend fun getPhotos():String
 }
 
 /**
