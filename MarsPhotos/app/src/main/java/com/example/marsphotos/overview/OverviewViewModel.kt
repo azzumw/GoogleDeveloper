@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.marsphotos.network.MarsApi
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 /**
  * This is responsible for making the network call
@@ -14,7 +15,7 @@ import kotlinx.coroutines.launch
  * */
 class OverviewViewModel :ViewModel() {
 
-    private val _status = MutableLiveData<String>("Hello")
+    private val _status = MutableLiveData<String>()
     val status : LiveData<String> = _status
 
     init {
@@ -27,9 +28,16 @@ class OverviewViewModel :ViewModel() {
          * Any coroutine launched in this scope is automatically canceled if the ViewModel
          * is cleared*/
         viewModelScope.launch {
-            val listResult = MarsApi.retrofitService.getPhotos()
-            _status.value = listResult
+
+            try {
+                val listResult = MarsApi.retrofitService.getPhotos()
+                _status.value = listResult
+            }catch (e:Exception){
+                _status.value = "Failure: ${e.message}"
+            }
         }
+
+
     }
 
 }
