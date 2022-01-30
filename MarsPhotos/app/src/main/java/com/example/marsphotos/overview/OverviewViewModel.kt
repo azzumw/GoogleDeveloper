@@ -36,8 +36,6 @@ class OverviewViewModel :ViewModel() {
                 _status.value = "Failure: ${e.message}"
             }
         }
-
-
     }
 
 }
