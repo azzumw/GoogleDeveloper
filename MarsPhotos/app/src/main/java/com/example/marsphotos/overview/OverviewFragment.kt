@@ -33,6 +33,9 @@ class OverviewFragment : Fragment() {
         _binding = FragmentOverviewBinding.inflate(layoutInflater,container,false)
         // Inflate the layout for this fragment
 //        _binding = GridItemViewBinding.inflate(inflater)
+
+        binding.photosGrid.adapter = PhotoGridAdapter()
+
         return binding.root
     }
 

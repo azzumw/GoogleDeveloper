@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="viewGridModel"
-            type="com.example.marsphotos.overview.OverviewViewModel" />
+            name="photo"
+            type="com.example.marsphotos.network.MarsPhoto" />
     </data>
 
     <ImageView
@@ -18,6 +18,6 @@
         android:adjustViewBounds="true"
         android:padding="2dp"
         tools:src="@tools:sample/backgrounds/scenic"
-        app:imageUrl="@{viewGridModel.photos.imgSrcUrl}"/>
+        app:imageUrl="@{photo.imgSrcUrl}"/>
 </layout>
 

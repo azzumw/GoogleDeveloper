@@ -1,25 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="overViewModel"
-            type="com.example.marsphotos.overview.OverviewViewModel" />
+<data>
+    <variable
+        name="overViewModel"
+        type="com.example.marsphotos.overview.OverviewViewModel" />
+</data>
 
-    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    tools:context="com.example.android.marsphotos.overview.OverViewFragment">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".overview.OverviewFragment">
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/photos_grid"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:padding="6dp"
+    android:clipToPadding="false"
+    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:listData="@{overViewModel.photos}"
+    app:spanCount="2"
+    tools:itemCount="16"
+    tools:listitem="@layout/grid_item_view" />
 
-        <TextView
-            android:id="@+id/status_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="@{overViewModel.status}"/>
+<ImageView
+    android:id="@+id/status_image"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:marsApiStatus="@{overViewModel.status}" />
 
-    </FrameLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </layout>

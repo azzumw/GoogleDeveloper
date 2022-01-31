@@ -9,6 +9,7 @@ import com.example.marsphotos.network.MarsPhoto
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
+enum class MarsApiStatus { LOADING, ERROR, DONE }
 /**
  * This is responsible for making the network call
  * use LiveData with lifecycle-aware data binding to update
@@ -16,8 +17,8 @@ import java.lang.Exception
  * */
 class OverviewViewModel :ViewModel() {
 
-    private val _status = MutableLiveData<String>()
-    val status : LiveData<String> = _status
+    private val _status = MutableLiveData<MarsApiStatus>()
+    val status : LiveData<MarsApiStatus> = _status
 
     private val _photos = MutableLiveData<List<MarsPhoto>>()
     val photos : LiveData<List<MarsPhoto>> = _photos
@@ -32,13 +33,14 @@ class OverviewViewModel :ViewModel() {
          * Any coroutine launched in this scope is automatically canceled if the ViewModel
          * is cleared*/
         viewModelScope.launch {
-
+            _status.value = MarsApiStatus.LOADING
             try {
                 val listResult = MarsApi.retrofitService.getPhotos()
                 _photos.value = listResult
-                _status.value = "Success: Mars properties retrieved"
+                _status.value = MarsApiStatus.DONE
             }catch (e:Exception){
-                _status.value = "Failure: ${e.message}"
+                _status.value = MarsApiStatus.ERROR
+                _photos.value = listOf()
             }
         }
     }
