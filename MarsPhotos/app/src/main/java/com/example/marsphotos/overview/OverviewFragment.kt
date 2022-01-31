@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.marsphotos.R
 import com.example.marsphotos.databinding.FragmentOverviewBinding
+import com.example.marsphotos.databinding.GridItemViewBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
@@ -31,6 +32,7 @@ class OverviewFragment : Fragment() {
 
         _binding = FragmentOverviewBinding.inflate(layoutInflater,container,false)
         // Inflate the layout for this fragment
+//        _binding = GridItemViewBinding.inflate(inflater)
         return binding.root
     }
 

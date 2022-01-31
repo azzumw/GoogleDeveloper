@@ -21,7 +21,7 @@ private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
  * Retrofit has a ScalarsConverter that supports strings and other primitive types,
  * so you call addConverterFactory() on the builder with
  * an instance of ScalarsConverterFactory
- * */
+ */
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
