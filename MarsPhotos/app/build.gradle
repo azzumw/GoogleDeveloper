@@ -36,6 +36,10 @@ android {
         viewBinding true
         dataBinding true
     }
+
+    sourceSets {
+        test.resources.srcDirs += 'src/test/res'
+    }
 }
 
 dependencies {
@@ -45,7 +49,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     //navigation
@@ -54,4 +58,32 @@ dependencies {
 
     // ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    // Retrofit with Moshi Converter
+    //The first dependency is for the Retrofit2 library itself,
+    // and the second dependency is for the Retrofit scalar converter.
+    // This converter enables Retrofit to return the JSON result as a String
+    // Retrofit with Moshi Converter
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+
+    // Moshi
+    //Android JSON parser that converts a JSON string into Kotlin objects.
+    // Retrofit has a converter that works with Moshi, so it's a great library for your purposes here.
+    implementation 'com.squareup.moshi:moshi-kotlin:1.9.3'
+
+    // Coil
+    implementation "io.coil-kt:coil:1.1.1"
+
+    //
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    //okHttp3Mock
+    /*
+    This dependency lets us create a mock server. Essentially,
+    the mock server intercepts network requests and reroutes them
+    to return the mock data that we have defined.
+    */
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.9.1"
 }
