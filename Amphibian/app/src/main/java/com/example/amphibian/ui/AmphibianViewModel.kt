@@ -5,17 +5,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.amphibian.network.Amphibian
 import com.example.amphibian.network.AmphibianApi
 import kotlinx.coroutines.launch
 
+enum class AmphibianApiStatus {LOADING, ERROR, DONE}
+
 class AmphibianViewModel:ViewModel() {
 
-    private val _amphibians = MutableLiveData<List<String>>()
-    val amphibians : LiveData<List<String>>
-    get() = _amphibians
+    private val _amphibians = MutableLiveData<List<Amphibian>>()
+    val amphibians : LiveData<List<Amphibian>> = _amphibians
 
-    private val _status = MutableLiveData<String>()
-    val status : LiveData<String> = _status
+    private val _singleAmphibian = MutableLiveData<Amphibian>()
+    val singleAmphibian : LiveData<Amphibian> = _singleAmphibian
+
+    private val _status = MutableLiveData<AmphibianApiStatus>()
+    val status : LiveData<AmphibianApiStatus> = _status
 
     init {
 
@@ -23,20 +28,27 @@ class AmphibianViewModel:ViewModel() {
     }
 
     private fun getAmphibians(){
-        val list = listOf("Frog","Croc","Snake","Anaconda","Python")
-        _amphibians.value = list
+
         viewModelScope.launch {
 
             try {
-                val listResult = AmphibianApi.retrofitService.getAmphibians()
 
-                _status.value = listResult.size.toString()
+                val result = AmphibianApi.retrofitService.getAmphibians()
+                _amphibians.value = result
+                    _status.value = AmphibianApiStatus.DONE
+
                 Log.e("VIEWMODEL",status.value.toString())
+
             }catch (e: Exception){
-                _status.value = "Failure: ${e.message}"
+                _status.value = AmphibianApiStatus.ERROR
+                _amphibians.value = listOf()
             }
 
         }
+    }
+
+    fun onAmphibianClicked(amphibian: Amphibian) {
+        _singleAmphibian.value = amphibian
     }
 
 }

@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/amphibianListFragment"
         android:name="com.example.amphibian.ui.AmphibianListFragment"
-        android:label="fragment_amphibian_list"
-        tools:layout="@layout/fragment_amphibian_list" >
+        android:label="Amphibians"
+        tools:layout="@layout/fragment_amphibian_list">
         <action
             android:id="@+id/action_amphibianListFragment_to_amphibianDetailFragment"
             app:destination="@id/amphibianDetailFragment" />
@@ -18,10 +18,5 @@
         android:id="@+id/amphibianDetailFragment"
         android:name="com.example.amphibian.ui.AmphibianDetailFragment"
         android:label="fragment_amphibian_detail"
-        tools:layout="@layout/fragment_amphibian_detail" >
-        <argument
-            android:name="pos"
-            app:argType="integer"
-            android:defaultValue="0" />
-    </fragment>
+        tools:layout="@layout/fragment_amphibian_detail" />
 </navigation>

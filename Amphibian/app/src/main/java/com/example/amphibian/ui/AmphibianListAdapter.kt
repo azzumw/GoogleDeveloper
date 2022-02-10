@@ -6,30 +6,48 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amphibian.R
+import com.example.amphibian.databinding.ListItemBinding
+import com.example.amphibian.network.Amphibian
 
-class AmphibianListAdapter(private val context:Context,private val amphibians:List<String>):RecyclerView.Adapter<AmphibianListAdapter.AmphibianViewHolder>(){
+class AmphibianListAdapter(private val clickListener: AmphibianListener): ListAdapter<Amphibian,AmphibianListAdapter.AmphibianViewHolder>(DiffCallback){
 
-    class AmphibianViewHolder(private val view: View) : RecyclerView.ViewHolder(view){
-        val textView: TextView = view.findViewById(R.id.amphibian_name)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AmphibianViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item, parent, false)
-        return AmphibianViewHolder(adapterLayout)
-    }
-
-    override fun onBindViewHolder(holder: AmphibianViewHolder, position: Int) {
-//        holder.textView.text = amphibians[position]
-        holder.textView.setOnClickListener{
-            val action = AmphibianListFragmentDirections.actionAmphibianListFragmentToAmphibianDetailFragment(pos = position)
-            holder.textView.findNavController().navigate(action)
+    class AmphibianViewHolder(private var binding:ListItemBinding) : RecyclerView.ViewHolder(binding.root){
+        fun bind(clickListener: AmphibianListener, amphibian: Amphibian) {
+            binding.amphibian = amphibian
+            binding.clickListener = clickListener
+            binding.executePendingBindings()
         }
     }
 
-    override fun getItemCount(): Int {
-        return amphibians.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AmphibianViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        return AmphibianViewHolder(
+            ListItemBinding.inflate(layoutInflater, parent, false)
+        )
     }
+
+    override fun onBindViewHolder(holder: AmphibianViewHolder, position: Int) {
+        val amphibian = getItem(position)
+        holder.bind(clickListener, amphibian)
+    }
+
+    companion object DiffCallback : DiffUtil.ItemCallback<Amphibian>(){
+        override fun areItemsTheSame(oldItem: Amphibian, newItem: Amphibian): Boolean {
+            return oldItem.name == newItem.name
+        }
+
+        override fun areContentsTheSame(oldItem: Amphibian, newItem: Amphibian): Boolean {
+            return oldItem.type == newItem.type && oldItem.description == newItem.description
+        }
+
+    }
+}
+
+
+class AmphibianListener(val clickListener: (amphibian: Amphibian) -> Unit) {
+    fun onClick(amphibian: Amphibian) = clickListener(amphibian)
 }

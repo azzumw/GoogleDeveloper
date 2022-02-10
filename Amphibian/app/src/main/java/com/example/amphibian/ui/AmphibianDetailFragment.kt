@@ -11,7 +11,6 @@ import com.example.amphibian.databinding.FragmentAmphibianDetailBinding
 import kotlin.properties.Delegates
 
 
-const val KEY_POS = "pos"
 class AmphibianDetailFragment : Fragment() {
 
     private val viewModel:AmphibianViewModel by activityViewModels()
@@ -19,22 +18,16 @@ class AmphibianDetailFragment : Fragment() {
     private var _binding : FragmentAmphibianDetailBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var pos : String
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments.let {
-            pos = it?.getInt(KEY_POS).toString()
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentAmphibianDetailBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentAmphibianDetailBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -42,6 +35,8 @@ class AmphibianDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.name.text = viewModel.singleAmphibian.value!!.name
+        binding.description.text = viewModel.singleAmphibian.value!!.description
     }
 
     override fun onDestroyView() {

@@ -8,6 +8,9 @@
             name="amphibian"
             type="com.example.amphibian.network.Amphibian" />
 
+        <variable
+            name="clickListener"
+            type="com.example.amphibian.ui.AmphibianListener" />
 
     </data>
 
@@ -15,19 +18,21 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(amphibian)}"
         android:layout_margin="8dp"
         app:cardElevation="4dp"
         app:cardCornerRadius="4dp">
-<!--        android:onClick="@{() -> clickListener.onClick(amphibian)}"-->
-
 
         <TextView
             android:id="@+id/amphibian_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
             android:padding="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@color/green"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="18sp"
             android:text="@{amphibian.name}"
