@@ -16,8 +16,6 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class InstrumentationTests : BaseTest() {
 
-    @get:Rule
-    val activity = ActivityScenarioRule(MainActivity::class.java,null)
     @Test
     fun `recycler_view_content`() {
         launchFragmentInContainer<AmphibianListFragment>(themeResId = R.style.Theme_Amphibian)
