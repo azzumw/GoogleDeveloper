@@ -1,15 +1,10 @@
 package com.example.amphibian.ui
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.amphibian.R
 import com.example.amphibian.databinding.ListItemBinding
 import com.example.amphibian.network.Amphibian
 
@@ -43,7 +38,6 @@ class AmphibianListAdapter(private val clickListener: AmphibianListener): ListAd
         override fun areContentsTheSame(oldItem: Amphibian, newItem: Amphibian): Boolean {
             return oldItem.type == newItem.type && oldItem.description == newItem.description
         }
-
     }
 }
 

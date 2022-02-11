@@ -37,6 +37,5 @@ fun bindStatus(statusImageView: ImageView, status: AmphibianApiStatus?) {
 
         else ->
         statusImageView.visibility = View.GONE
-
     }
 }

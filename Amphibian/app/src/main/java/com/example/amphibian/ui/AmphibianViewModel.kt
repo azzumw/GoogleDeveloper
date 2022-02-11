@@ -1,6 +1,5 @@
 package com.example.amphibian.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -37,18 +36,14 @@ class AmphibianViewModel:ViewModel() {
                 _amphibians.value = result
                     _status.value = AmphibianApiStatus.DONE
 
-                Log.e("VIEWMODEL",status.value.toString())
-
             }catch (e: Exception){
                 _status.value = AmphibianApiStatus.ERROR
                 _amphibians.value = listOf()
             }
-
         }
     }
 
     fun onAmphibianClicked(amphibian: Amphibian) {
         _singleAmphibian.value = amphibian
     }
-
 }

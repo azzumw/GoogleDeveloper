@@ -23,16 +23,8 @@ import retrofit2.http.GET
  * limitations under the License.
  */
 
-
-// TODO: Create a property for the base URL provided in the codelab
-
-// TODO: Build the Moshi object with Kotlin adapter factory that Retrofit will be using to parse JSON
-
-// TODO: Build a Retrofit object with the Moshi converter
-
 const val BASE_URL = "https://developer.android.com/courses/pathways/android-basics-kotlin-unit-4-pathway-2/"
 const val END_POINT = "android-basics-kotlin-unit-4-pathway-2-project-api.json"
-
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -42,11 +34,9 @@ private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi)).baseUrl(BASE_URL).build()
 
 interface AmphibianApiService {
-
     @GET(END_POINT)
     suspend fun getAmphibians() : List<Amphibian>
 }
-
 
 object AmphibianApi{
     val retrofitService : AmphibianApiService by lazy {
