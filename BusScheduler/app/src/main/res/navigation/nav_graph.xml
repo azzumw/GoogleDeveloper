@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    android:label="@string/app_name"
+    app:startDestination="@id/fullScheduleFragment">
+
+    <fragment
+        android:id="@+id/fullScheduleFragment"
+        android:name="com.example.busscheduler.FullScheduleFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_full_schedule">
+        <action
+            android:id="@+id/action_fullScheduleFragment_to_stopScheduleFragment"
+            app:destination="@id/stopScheduleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stopScheduleFragment"
+        android:name="com.example.busscheduler.StopScheduleFragment"
+        android:label="fragment_stop_schedule"
+        tools:layout="@layout/fragment_stop_schedule">
+        <argument
+            android:name="stopName"
+            app:argType="string" />
+    </fragment>
+</navigation>
