@@ -5,7 +5,10 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.busscheduler.database.schedule.AppDatabase
 import com.example.busscheduler.databinding.ActivityMainBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController:NavController
@@ -24,6 +27,10 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         setupActionBarWithNavController(navController)
+
+        GlobalScope.launch {
+            AppDatabase.getDatabase(applicationContext).scheduleDao().getAll()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
