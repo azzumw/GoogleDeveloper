@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fullScheduleFragment"
-        android:name="com.example.busscheduler.FullScheduleFragment"
+        android:name="com.example.busscheduler.ui.FullScheduleFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_full_schedule">
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/stopScheduleFragment"
-        android:name="com.example.busscheduler.StopScheduleFragment"
+        android:name="com.example.busscheduler.ui.StopScheduleFragment"
         android:label="fragment_stop_schedule"
         tools:layout="@layout/fragment_stop_schedule">
         <argument

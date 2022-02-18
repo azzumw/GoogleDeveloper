@@ -1,29 +1,32 @@
-package com.example.busscheduler
+package com.example.busscheduler.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.busscheduler.databinding.FragmentFullScheduleBinding
 
+class StopScheduleFragment : Fragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FullScheduleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class FullScheduleFragment : Fragment() {
+    companion object {
+        var STOP_NAME = "stopName"
+    }
 
     private var _binding : FragmentFullScheduleBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var recyclerView : RecyclerView
 
+    private lateinit var stopName: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
-       super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            stopName = it.getString(STOP_NAME).toString()
+        }
     }
 
     override fun onCreateView(
@@ -31,7 +34,7 @@ class FullScheduleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding  = FragmentFullScheduleBinding.inflate(inflater,container,false)
+        _binding = FragmentFullScheduleBinding.inflate(inflater,container,false)
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -40,13 +43,12 @@ class FullScheduleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = binding.recyclerView
-//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding = null
-    }
 
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.busscheduler
+package com.example.busscheduler.ui
 
 import android.app.Application
 import com.example.busscheduler.database.schedule.AppDatabase

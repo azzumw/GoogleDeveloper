@@ -1,10 +1,11 @@
-package com.example.busscheduler
+package com.example.busscheduler.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.busscheduler.R
 import com.example.busscheduler.database.schedule.AppDatabase
 import com.example.busscheduler.databinding.ActivityMainBinding
 import kotlinx.coroutines.GlobalScope
