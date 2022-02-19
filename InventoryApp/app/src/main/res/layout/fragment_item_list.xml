@@ -54,6 +54,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

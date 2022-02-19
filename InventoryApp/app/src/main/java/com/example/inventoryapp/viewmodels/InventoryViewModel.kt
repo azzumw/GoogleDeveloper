@@ -1,12 +1,16 @@
 package com.example.inventoryapp.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.inventoryapp.data.Item
 import com.example.inventoryapp.data.ItemDao
 import kotlinx.coroutines.launch
 
 class InventoryViewModel(private val itemDao: ItemDao) : ViewModel(){
+
+    val allItems: LiveData<List<Item>> = itemDao.getAllItems().asLiveData()
 
     fun isEntryValid(itemName: String, itemPrice: String, itemCount: String):Boolean{
         if (itemName.isBlank() || itemPrice.isBlank() || itemCount.isBlank()) {

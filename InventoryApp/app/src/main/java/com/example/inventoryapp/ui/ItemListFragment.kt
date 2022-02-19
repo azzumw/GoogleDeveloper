@@ -5,13 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.inventoryapp.InventoryAdapter
 import com.example.inventoryapp.R
 import com.example.inventoryapp.databinding.FragmentItemListBinding
+import com.example.inventoryapp.viewmodels.InventoryViewModel
+import com.example.inventoryapp.viewmodels.InventoryViewModelFactory
 
 
 class ItemListFragment : Fragment() {
+
+    private val viewModel: InventoryViewModel by activityViewModels {
+        InventoryViewModelFactory((activity?.application as InventoryApplication).database.itemDao())
+    }
 
     private var _binding : FragmentItemListBinding? = null
     private val binding get() = _binding!!
@@ -33,13 +41,28 @@ class ItemListFragment : Fragment() {
 
         recyclerView = binding.recyclerView
 
+        val inventoryAdapter = InventoryAdapter {
+//            val action = ItemListFragmentDirections.actionItemListFragmentToItemDetailFragment()
+//
+//            view.findNavController().navigate(action)
+        }
+
+        recyclerView.adapter = inventoryAdapter
+
+        viewModel.allItems.observe(this.viewLifecycleOwner) { items ->
+            items.let {
+                inventoryAdapter.submitList(it)
+            }
+        }
+
         binding.floatingActionButton.setOnClickListener {
             navigateToAddNewItemFragment()
         }
     }
 
-    fun navigateToAddNewItemFragment(){
-        findNavController().navigate(R.id.action_itemListFragment_to_addItemFragment)
+    private fun navigateToAddNewItemFragment(){
+         val action = ItemListFragmentDirections.actionItemListFragmentToAddItemFragment(title = getString(R.string.add_fragment_title))
+        findNavController().navigate(action)
     }
 
     override fun onDestroy() {
