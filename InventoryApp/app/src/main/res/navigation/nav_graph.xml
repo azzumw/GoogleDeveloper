@@ -9,9 +9,31 @@
         android:id="@+id/itemListFragment"
         android:name="com.example.inventoryapp.ItemListFragment"
         android:label="fragment_item_list"
-        tools:layout="@layout/fragment_item_list" />
+        tools:layout="@layout/fragment_item_list" >
+        <action
+            android:id="@+id/action_itemListFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+        <action
+            android:id="@+id/action_itemListFragment_to_itemDetailFragment"
+            app:destination="@id/itemDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemDetailFragment"
+        android:name="com.example.inventoryapp.ItemDetailFragment"
+        android:label="fragment_item_detail"
+        tools:layout="@layout/fragment_item_detail" >
+        <action
+            android:id="@+id/action_itemDetailFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addItemFragment"
         android:name="com.example.inventoryapp.AddItemFragment"
-        android:label="@string/add_fragment_title" />
+        android:label="AddItemFragment" >
+        <action
+            android:id="@+id/action_addItemFragment_to_itemListFragment"
+            app:destination="@id/itemListFragment"
+            app:popUpTo="@id/itemListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
