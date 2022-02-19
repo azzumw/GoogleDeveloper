@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.inventoryapp.R
 import com.example.inventoryapp.databinding.FragmentItemListBinding
 
 
@@ -30,6 +32,14 @@ class ItemListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = binding.recyclerView
+
+        binding.floatingActionButton.setOnClickListener {
+            navigateToAddNewItemFragment()
+        }
+    }
+
+    fun navigateToAddNewItemFragment(){
+        findNavController().navigate(R.id.action_itemListFragment_to_addItemFragment)
     }
 
     override fun onDestroy() {
