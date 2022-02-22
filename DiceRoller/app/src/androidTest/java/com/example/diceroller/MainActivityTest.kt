@@ -54,6 +54,9 @@ class MainActivityTest : BaseTestClass(){
 
     @Test
     fun test_correct_default_image_is_set(){
+        //WHEN: ON APP START
+
+        //THEN: DICE IMAGE 1 is shown
         diceImageView.check(matches(withDrawable(R.drawable.dice_1)))
     }
 
