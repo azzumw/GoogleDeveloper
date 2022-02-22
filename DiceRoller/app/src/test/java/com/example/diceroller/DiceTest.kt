@@ -16,7 +16,7 @@ class DiceTest {
         dice = RealDice()
     }
     @Test
-    fun getSides() {
+    fun checkNumberOfSidesOfDice() {
         assertEquals(6,dice.sides)
     }
 

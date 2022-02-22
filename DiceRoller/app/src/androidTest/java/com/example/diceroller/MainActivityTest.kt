@@ -20,10 +20,10 @@ class MainActivityTest : BaseTestClass(){
     private val rollButton = viewWithId(R.id.button)
 
     private val fakeDice = FakeDice()
-//    TODO(2): addtestCorrectImageShown
 
         @get:Rule
     val scenarioRule = ActivityScenarioRule(MainActivity::class.java)
+
     @Before
     fun setUp() {
         val applicationContext = appContext.applicationContext
@@ -36,20 +36,24 @@ class MainActivityTest : BaseTestClass(){
     }
 
     @Test
-    fun checkTextViewIsEmpty() {
+    fun checkImageViewIsDisplayed() {
         diceImageView
             .check(matches(isDisplayed()))
     }
 
     @Test
-    fun clickRollButton() {
+    fun check_correct_image_displayed_on_roll() {
+        //GIVEN: ROLL NUMBER = 4
+
+        //WHEN: Dice Roll button is clicked
         rollButton.perform(click())
 
+        //THEN: image for dice 4 is displayed
         diceImageView.check(matches(withDrawable(R.drawable.dice_4)))
     }
 
     @Test
-    fun test_correctImageResIdShown(){
+    fun test_correct_default_image_is_set(){
         diceImageView.check(matches(withDrawable(R.drawable.dice_1)))
     }
 
