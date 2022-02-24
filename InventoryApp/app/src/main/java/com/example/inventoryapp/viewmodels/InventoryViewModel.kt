@@ -42,4 +42,21 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel(){
     fun getItem(id:Int): LiveData<Item> {
         return itemDao.getItem(id).asLiveData()
     }
+
+    private fun updateItem(item:Item){
+        viewModelScope.launch {
+            itemDao.update(item)
+        }
+    }
+
+    fun sellItem(item:Item){
+        if(item.quantity > 0 ){
+            val newItem = item.copy(quantity = item.quantity- 1)
+            updateItem(newItem)
+        }
+    }
+
+    fun isStockAvailable(item: Item): Boolean {
+        return (item.quantity > 0)
+    }
 }
