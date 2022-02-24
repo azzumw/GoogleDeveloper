@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventoryapp.InventoryAdapter
@@ -42,9 +43,9 @@ class ItemListFragment : Fragment() {
         recyclerView = binding.recyclerView
 
         val inventoryAdapter = InventoryAdapter {
-//            val action = ItemListFragmentDirections.actionItemListFragmentToItemDetailFragment()
+            val action = ItemListFragmentDirections.actionItemListFragmentToItemDetailFragment(it.id)
 //
-//            view.findNavController().navigate(action)
+            view.findNavController().navigate(action)
         }
 
         recyclerView.adapter = inventoryAdapter

@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_itemDetailFragment_to_addItemFragment"
             app:destination="@id/addItemFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/addItemFragment"

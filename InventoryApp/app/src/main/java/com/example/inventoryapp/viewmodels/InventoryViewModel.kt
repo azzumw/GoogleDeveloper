@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.inventoryapp.data.Item
 import com.example.inventoryapp.data.ItemDao
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class InventoryViewModel(private val itemDao: ItemDao) : ViewModel(){
@@ -36,5 +37,9 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel(){
             price = price.toDouble(),
             quantity = qty.toInt()
         )
+    }
+
+    fun getItem(id:Int): LiveData<Item> {
+        return itemDao.getItem(id).asLiveData()
     }
 }
