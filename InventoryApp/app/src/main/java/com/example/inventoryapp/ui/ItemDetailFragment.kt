@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.inventoryapp.R
 import com.example.inventoryapp.data.Item
 import com.example.inventoryapp.data.getFormattedPrice
 import com.example.inventoryapp.databinding.FragmentItemDetailBinding
 import com.example.inventoryapp.viewmodels.InventoryViewModel
 import com.example.inventoryapp.viewmodels.InventoryViewModelFactory
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.flow.collect
 
 
@@ -60,7 +63,28 @@ class ItemDetailFragment : Fragment() {
             sellItem.setOnClickListener {
                 viewModel.sellItem(item)
             }
+
+            deleteItem.setOnClickListener {
+                showConfirmationDialog()
+            }
         }
+    }
+
+    private fun showConfirmationDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(android.R.string.dialog_alert_title))
+            .setMessage(getString(R.string.delete_question))
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.no)) { _, _ -> }
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                deleteItem()
+            }
+            .show()
+    }
+
+    private fun deleteItem() {
+        viewModel.deleteItem(item)
+        findNavController().navigateUp()
     }
 
     override fun onDestroy() {

@@ -1,11 +1,14 @@
 package com.example.inventoryapp.viewmodels
 
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.inventoryapp.R
 import com.example.inventoryapp.data.Item
 import com.example.inventoryapp.data.ItemDao
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -59,4 +62,11 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel(){
     fun isStockAvailable(item: Item): Boolean {
         return (item.quantity > 0)
     }
+
+    fun deleteItem(item:Item){
+        viewModelScope.launch {
+            itemDao.delete(item)
+        }
+    }
+
 }
