@@ -24,11 +24,14 @@ class ItemDetailFragment : Fragment() {
     private var _binding : FragmentItemDetailBinding? = null
     private val binding get() = _binding!!
 
+    private val navigationArgs: ItemDetailFragmentArgs by navArgs()
+
     lateinit var item: Item
 
     private val viewModel : InventoryViewModel by activityViewModels{
         InventoryViewModelFactory((activity?.application as InventoryApplication).database.itemDao())
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,12 +45,10 @@ class ItemDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val itemId = arguments.let {
-            it?.getInt("id")
-        }
+        val itemId = navigationArgs.id
 
 
-        viewModel.getItem(itemId!!).observe(this.viewLifecycleOwner) {
+        viewModel.getItem(itemId).observe(this.viewLifecycleOwner) {
             item = it
             bind(item)
         }
@@ -67,6 +68,10 @@ class ItemDetailFragment : Fragment() {
             deleteItem.setOnClickListener {
                 showConfirmationDialog()
             }
+
+            editItem.setOnClickListener {
+                editItem()
+            }
         }
     }
 
@@ -85,6 +90,14 @@ class ItemDetailFragment : Fragment() {
     private fun deleteItem() {
         viewModel.deleteItem(item)
         findNavController().navigateUp()
+    }
+
+    private fun editItem() {
+        val action = ItemDetailFragmentDirections.actionItemDetailFragmentToAddItemFragment(
+            getString(R.string.edit_fragment_title),
+            item.id
+        )
+        this.findNavController().navigate(action)
     }
 
     override fun onDestroy() {

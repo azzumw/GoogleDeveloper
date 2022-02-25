@@ -69,4 +69,29 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel(){
         }
     }
 
+    private fun getUpdatedItemEntry(
+        itemId: Int,
+        itemName: String,
+        itemPrice: String,
+        itemCount: String
+    ): Item {
+
+        return Item(
+            id = itemId,
+            name = itemName,
+            price = itemPrice.toDouble(),
+            quantity = itemCount.toInt()
+        )
+    }
+
+    fun updateItem(
+        itemId: Int,
+        itemName: String,
+        itemPrice: String,
+        itemCount: String
+    ) {
+        val updatedItem = getUpdatedItemEntry(itemId, itemName, itemPrice, itemCount)
+        updateItem(updatedItem)
+    }
+
 }
