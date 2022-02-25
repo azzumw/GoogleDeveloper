@@ -26,7 +26,6 @@ class AddItemFragment : Fragment() {
     private var _binding : FragmentAddItemBinding? = null
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -96,7 +95,6 @@ class AddItemFragment : Fragment() {
         val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
         findNavController().navigate(action)
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

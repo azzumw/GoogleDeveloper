@@ -104,5 +104,4 @@ class ItemDetailFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
 }

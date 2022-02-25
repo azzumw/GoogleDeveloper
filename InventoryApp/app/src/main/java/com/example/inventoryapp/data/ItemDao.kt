@@ -2,7 +2,6 @@ package com.example.inventoryapp.data
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.selects.select
 
 @Dao
 interface ItemDao {

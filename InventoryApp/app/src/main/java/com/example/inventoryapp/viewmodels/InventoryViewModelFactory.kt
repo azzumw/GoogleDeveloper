@@ -15,5 +15,4 @@ class InventoryViewModelFactory (private val itemDao: ItemDao)
 
         throw IllegalArgumentException("Unknown View model class")
     }
-
 }

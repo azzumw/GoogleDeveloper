@@ -44,7 +44,6 @@ class ItemListFragment : Fragment() {
 
         val inventoryAdapter = InventoryAdapter {
             val action = ItemListFragmentDirections.actionItemListFragmentToItemDetailFragment(it.id)
-//
             view.findNavController().navigate(action)
         }
 
