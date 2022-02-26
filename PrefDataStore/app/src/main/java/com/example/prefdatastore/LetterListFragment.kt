@@ -4,13 +4,19 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prefdatastore.data.SettingsDataStore
 import com.example.prefdatastore.databinding.FragmentLetterListBinding
+import kotlinx.coroutines.launch
 
 
 class LetterListFragment : Fragment() {
+
+    private lateinit var settingsDataStore: SettingsDataStore
     private var _binding: FragmentLetterListBinding? = null
 
     // This property is only valid between onCreateView and
@@ -39,6 +45,15 @@ class LetterListFragment : Fragment() {
         // Sets the LayoutManager of the recyclerview
         // On the first run of the app, it will be LinearLayoutManager
         chooseLayout()
+
+        settingsDataStore = SettingsDataStore(requireContext())
+
+        //convert the preferenceFlow to Livedata using asLiveData().
+        // Attach an observer and pass in the viewLifecycleOwner as the owner.
+        settingsDataStore.preferenceFlow.asLiveData().observe(viewLifecycleOwner) {
+            isLinearLayoutManager = it
+            chooseLayout()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -80,6 +95,11 @@ class LetterListFragment : Fragment() {
             R.id.action_switch_layout -> {
                 // Sets isLinearLayoutManager (a Boolean) to the opposite value
                 isLinearLayoutManager = !isLinearLayoutManager
+
+                // Launch a coroutine and write the layout setting in the preference Datastore
+                lifecycleScope.launch {
+                    settingsDataStore.saveLayoutToPreferencesStore(isLinearLayoutManager, requireContext())
+                }
                 // Sets layout and icon
                 chooseLayout()
                 setIcon(item)
@@ -102,5 +122,4 @@ class LetterListFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }
