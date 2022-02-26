@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "forgeable_database")
+@Entity(tableName = "forageable")
 data class Forageable(
     @PrimaryKey (autoGenerate = true)
     val id: Long = 0,
