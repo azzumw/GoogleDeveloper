@@ -1,32 +1,38 @@
 package com.example.forageapp.ui.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.forageapp.data.ForageableDao
 import com.example.forageapp.model.Forageable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ForageableViewModel:ViewModel() {
-    // TODO: create a property to set to a list of all forageables from the DAO
+class ForageableViewModel(val dao:ForageableDao):ViewModel() {
 
-    // TODO : create method that takes id: Long as a parameter and retrieve a Forageable from the
-    //  database by id via the DAO.
+    val forageables : LiveData<List<Forageable>> = dao.getForageables().asLiveData()
 
-    fun addForageable(
-        name: String,
-        address: String,
-        inSeason: Boolean,
-        notes: String
-    ) {
+
+    fun getAForageable(id: Long): LiveData<Forageable> {
+
+        return dao.getForageable(id).asLiveData()
+    }
+
+    fun addForageable(name: String, address: String, inSeason: Boolean, notes: String) {
         val forageable = Forageable(
             name = name,
             address = address,
             inSeason = inSeason,
             notes = notes
         )
+        insertForageable(forageable)
+    }
 
-        // TODO: launch a coroutine and call the DAO method to add a Forageable to the database within it
-
+    private fun insertForageable(forageable: Forageable){
+        viewModelScope.launch {
+            dao.insert(forageable)
+        }
     }
 
     fun updateForageable(
@@ -44,13 +50,13 @@ class ForageableViewModel:ViewModel() {
             notes = notes
         )
         viewModelScope.launch(Dispatchers.IO) {
-            // TODO: call the DAO method to update a forageable to the database here
+            dao.update(forageable)
         }
     }
 
     fun deleteForageable(forageable: Forageable) {
         viewModelScope.launch(Dispatchers.IO) {
-            // TODO: call the DAO method to delete a forageable to the database here
+            dao.delete(forageable)
         }
     }
 
@@ -59,5 +65,3 @@ class ForageableViewModel:ViewModel() {
     }
 }
 
-// TODO: create a view model factory that takes a ForageableDao as a property and
-//  creates a ForageableViewModel

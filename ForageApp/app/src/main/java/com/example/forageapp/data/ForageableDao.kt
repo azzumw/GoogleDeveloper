@@ -19,6 +19,6 @@ interface ForageableDao {
     fun getForageable(id: Long) : Flow<Forageable>
 
     @Query("select * from forageable order by id")
-    fun getForageable() : Flow<List<Forageable>>
+    fun getForageables() : Flow<List<Forageable>>
 
 }
