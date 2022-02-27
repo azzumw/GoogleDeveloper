@@ -4,7 +4,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="list_fragment_label">List Fragment</string>
     <string name="add_fragment_label">Add Fragment</string>
-
+    <string name="edit_fragment_label">Edit Fragment</string>
     <string name="forageable_name">Name</string>
     <string name="forageable_location">Location</string>
     <string name="in_season">Currently in season</string>
@@ -12,6 +12,4 @@
     <string name="notes">Notes</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

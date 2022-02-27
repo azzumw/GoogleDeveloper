@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/forgeableListFragment"
         android:name="com.example.forageapp.ui.ForgeableListFragment"
-        android:label="fragment_forgeable_list"
-        tools:layout="@layout/fragment_forgeable_list" >
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_forgeable_list">
         <action
             android:id="@+id/action_forgeableListFragment_to_addForageableFragment"
             app:destination="@id/addForageableFragment" />
@@ -28,6 +28,10 @@
         <action
             android:id="@+id/action_addForageableFragment_to_forgeableListFragment"
             app:destination="@id/forgeableListFragment" />
+        <argument
+            android:name="id"
+            app:argType="long"
+            android:defaultValue="-1L" />
     </fragment>
     <fragment
         android:id="@+id/forgeableDetailFragment"
@@ -40,5 +44,8 @@
         <argument
             android:name="id"
             app:argType="long" />
+        <action
+            android:id="@+id/action_forgeableDetailFragment_to_addForageableFragment"
+            app:destination="@id/addForageableFragment" />
     </fragment>
 </navigation>

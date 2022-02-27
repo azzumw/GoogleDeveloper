@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavArgsLazy
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.forageapp.BaseApplication
 import com.example.forageapp.R
@@ -46,6 +47,11 @@ class ForgeableDetailFragment : Fragment() {
         viewModel.getAForageable(id).observe(viewLifecycleOwner){
             forageable = it
             bind(forageable)
+        }
+
+        binding.editForageableFab.setOnClickListener {
+            val action = ForgeableDetailFragmentDirections.actionForgeableDetailFragmentToAddForageableFragment(title = getString(R.string.edit_fragment_label),forageable.id)
+            findNavController().navigate(action)
         }
     }
 
