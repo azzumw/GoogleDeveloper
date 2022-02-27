@@ -7,14 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.forageapp.BaseApplication
 import com.example.forageapp.R
 import com.example.forageapp.databinding.FragmentForgeableListBinding
+import com.example.forageapp.ui.adapter.ForageableListAdapter
 import com.example.forageapp.ui.viewmodel.ForageableFactory
 import com.example.forageapp.ui.viewmodel.ForageableViewModel
 
 class ForgeableListFragment : Fragment() {
-
+    private lateinit var recyclerView: RecyclerView
     private val viewModel : ForageableViewModel by activityViewModels {
         ForageableFactory((activity?.application as BaseApplication).database.forageableDao())
     }
@@ -34,7 +36,16 @@ class ForgeableListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.forageables.observe(viewLifecycleOwner){}
+        recyclerView = binding.recyclerView
+
+        val adapter = ForageableListAdapter {}
+        recyclerView.adapter = adapter
+
+        viewModel.forageables.observe(viewLifecycleOwner){
+            it.let {
+                adapter.submitList(it)
+            }
+        }
 
         binding.addForageableFab.setOnClickListener {
 
