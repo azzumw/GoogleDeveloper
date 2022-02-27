@@ -9,5 +9,18 @@
         android:id="@+id/forgeableListFragment"
         android:name="com.example.forageapp.ui.ForgeableListFragment"
         android:label="fragment_forgeable_list"
-        tools:layout="@layout/fragment_forgeable_list" />
+        tools:layout="@layout/fragment_forgeable_list" >
+        <action
+            android:id="@+id/action_forgeableListFragment_to_addForageableFragment"
+            app:destination="@id/addForageableFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addForageableFragment"
+        android:name="com.example.forageapp.ui.AddForageableFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_add_forageable">
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
 </navigation>

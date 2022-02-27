@@ -13,7 +13,6 @@ class ForageableViewModel(val dao:ForageableDao):ViewModel() {
 
     val forageables : LiveData<List<Forageable>> = dao.getForageables().asLiveData()
 
-
     fun getAForageable(id: Long): LiveData<Forageable> {
 
         return dao.getForageable(id).asLiveData()
