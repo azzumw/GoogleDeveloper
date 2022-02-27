@@ -31,7 +31,6 @@ class ForgeableListFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentForgeableListBinding.inflate(layoutInflater,container,false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,7 +38,10 @@ class ForgeableListFragment : Fragment() {
 
         recyclerView = binding.recyclerView
 
-        val adapter = ForageableListAdapter {}
+        val adapter = ForageableListAdapter {
+            val action = ForgeableListFragmentDirections.actionForgeableListFragmentToForgeableDetailFragment(name = it.name, id = it.id)
+            findNavController().navigate(action)
+        }
 
         recyclerView.adapter = adapter
 
