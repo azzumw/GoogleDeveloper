@@ -1,5 +1,7 @@
 package com.example.forageapp
 
+import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.replaceText
@@ -20,7 +22,7 @@ class PersistenceInstrumentationTests {
     @Before
     fun setup() {
 
-//        launchActivity<MainActivity>()
+        launch(MainActivity::class.java)
         onView(withId(R.id.add_forageable_fab)).perform(click())
 
         onView(withId(R.id.name_input)).perform(replaceText("Name"))
