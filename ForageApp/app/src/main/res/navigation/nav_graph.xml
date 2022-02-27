@@ -22,5 +22,8 @@
         <argument
             android:name="title"
             app:argType="string" />
+        <action
+            android:id="@+id/action_addForageableFragment_to_forgeableListFragment"
+            app:destination="@id/forgeableListFragment" />
     </fragment>
 </navigation>

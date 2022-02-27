@@ -16,6 +16,7 @@ import com.example.forageapp.ui.viewmodel.ForageableFactory
 import com.example.forageapp.ui.viewmodel.ForageableViewModel
 
 class ForgeableListFragment : Fragment() {
+
     private lateinit var recyclerView: RecyclerView
     private val viewModel : ForageableViewModel by activityViewModels {
         ForageableFactory((activity?.application as BaseApplication).database.forageableDao())
@@ -39,6 +40,7 @@ class ForgeableListFragment : Fragment() {
         recyclerView = binding.recyclerView
 
         val adapter = ForageableListAdapter {}
+
         recyclerView.adapter = adapter
 
         viewModel.forageables.observe(viewLifecycleOwner){
