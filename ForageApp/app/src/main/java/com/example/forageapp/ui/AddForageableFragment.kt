@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.forageapp.BaseApplication
-import com.example.forageapp.R
 import com.example.forageapp.databinding.FragmentAddForageableBinding
 import com.example.forageapp.model.Forageable
 import com.example.forageapp.ui.viewmodel.ForageableFactory
@@ -44,6 +43,7 @@ class AddForageableFragment : Fragment() {
         val id = navArgs.id
 
         if(id > 0){
+
             viewModel.getAForageable(id).observe(viewLifecycleOwner){
                 forageable = it
                 bind(forageable)
@@ -62,8 +62,13 @@ class AddForageableFragment : Fragment() {
             locationAddressInput.setText(forageable.address,TextView.BufferType.SPANNABLE)
             inSeasonCheckbox.isChecked = forageable.inSeason
             notesInput.setText(forageable.notes,TextView.BufferType.SPANNABLE)
+            deleteBtn.visibility = View.VISIBLE
             saveBtn.setOnClickListener{
                 updateForageable()
+            }
+            deleteBtn.setOnClickListener {
+                viewModel.deleteForageable(forageable)
+                navigateToForageListFragment()
             }
         }
     }
@@ -84,9 +89,13 @@ class AddForageableFragment : Fragment() {
                 binding.inSeasonCheckbox.isChecked,
                 binding.notesInput.text.toString()
             )
-            val action = AddForageableFragmentDirections.actionAddForageableFragmentToForgeableListFragment()
-            findNavController().navigate(action)
+            navigateToForageListFragment()
         }
+    }
+
+    private fun navigateToForageListFragment(){
+        val action = AddForageableFragmentDirections.actionAddForageableFragmentToForgeableListFragment()
+        findNavController().navigate(action)
     }
 
     private fun addNewForageable(){
