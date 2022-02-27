@@ -70,5 +70,4 @@ class PersistenceInstrumentationTests {
         Thread.sleep(1000)
         onView(withText("Name")).check(doesNotExist())
     }
-
 }
