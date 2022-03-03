@@ -36,11 +36,8 @@ class BlurWorker(context: Context,params:WorkerParameters) :Worker(context,param
 
             val output = blurBitmap(picture, appContext)
 
-            blurBitmap(picture,appContext)
-
-            val outputUri = writeBitmapToFile(appContext,picture)
-
-            makeStatusNotification("Output is $outputUri",appContext)
+            // Write bitmap to a temp file
+            val outputUri = writeBitmapToFile(appContext, output)
 
             val outputData = workDataOf(KEY_IMAGE_URI to outputUri.toString())
 
