@@ -18,6 +18,8 @@ package com.example.watermeproject.worker
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.work.Worker
@@ -34,6 +36,7 @@ class WaterReminderWorker(
     // Arbitrary id number
     private val notificationId = 17
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun doWork(): Result {
 
         //setting notification tap action
@@ -43,7 +46,7 @@ class WaterReminderWorker(
         }
 
         val pendingIntent: PendingIntent = PendingIntent
-            .getActivity(applicationContext, 0, intent, 0)
+            .getActivity(applicationContext, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         val plantName = inputData.getString(nameKey)
 
