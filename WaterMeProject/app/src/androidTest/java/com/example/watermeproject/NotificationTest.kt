@@ -1,5 +1,6 @@
 package com.example.watermeproject
 
+import android.util.Log
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -16,16 +17,13 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Instrumented test, which will execute on an Android device.
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
 @RunWith(AndroidJUnit4::class)
 class NotificationTest {
-
-    /**
-     * Instrumented test, which will execute on an Android device.
-     *
-     * See [testing documentation](http://d.android.com/tools/testing).
-     */
-    @RunWith(AndroidJUnit4::class)
-    class NotificationTest {
 
         private val timeout: Long = 6000
 
@@ -60,9 +58,11 @@ class NotificationTest {
             notification.click()
             uiDevice.wait(Until.hasObject(By.pkg("com.example.waterme")
                 .depth(0)), 1000)
-            val pkg = uiDevice.findObject(UiSelector().packageName("com.example.waterme"))
+            val context = InstrumentationRegistry.getInstrumentation().targetContext
+            val packageName = context.packageName
+            Log.e("TEST",packageName)
+            val pkg = uiDevice.findObject(UiSelector().packageName(packageName))
                 .exists()
             Assert.assertTrue("Could not find package", pkg)
         }
-}
 }
