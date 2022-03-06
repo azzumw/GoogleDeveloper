@@ -18,7 +18,7 @@ Special attention has been given to writing instrumentation tests covering: recy
 
 
 ## Projects
-1. Dice Roller 
+1. [Dice Roller](https://github.com/azzumw/GoogleDeveloper/tree/main/DiceRoller "Dice link title")
 2. Dogglers
 3. TipTime
 4. Affirmations
