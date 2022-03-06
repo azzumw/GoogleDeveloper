@@ -17,7 +17,7 @@ Special attention has been given to writing instrumentation tests covering: recy
 - Networking (Kotlin coroutines)
 
 
-## What covers what?
+## Projects
 1. Dice Roller 
 2. Dogglers
 3. TipTime
