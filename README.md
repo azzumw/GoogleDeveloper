@@ -1,6 +1,6 @@
-# GoogleDeveloper
+# Android Basics In Kotlin
 
-Welcome to my Google Developer Repo.
+Welcome to my Android Basics in Kotlin repo.
 
 Please note: This repo is a work in progress. 
 
