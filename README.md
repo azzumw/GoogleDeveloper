@@ -18,18 +18,18 @@ Special attention has been given to writing instrumentation tests covering: recy
 
 
 ## Projects
-1. [Dice Roller](https://github.com/azzumw/GoogleDeveloper/tree/main/DiceRoller "Dice link title")
+1. [Dice Roller](https://github.com/azzumw/GoogleDeveloper/tree/main/DiceRoller "Dice link title") 
 2. Lemonade (to be added)
 3. [TipTime](https://github.com/azzumw/GoogleDeveloper/tree/main/Tiptime "TipTime link title")
-4. [Affirmations](https://github.com/azzumw/GoogleDeveloper/tree/main/Affirmations "Affirmations link title")
+4. [Affirmations](https://github.com/azzumw/GoogleDeveloper/tree/main/Affirmations "Affirmations link title") - RecyclerView, Testing RecyclerView
 5. Dogglers (to be added)
-6. [Words](https://github.com/azzumw/GoogleDeveloper/tree/main/WordStage2 "Words link title")
-7. [UnScramble](https://github.com/azzumw/GoogleDeveloper/tree/main/Unscramble "UnScramble link title")
-8. [Cupcake](https://github.com/azzumw/GoogleDeveloper/tree/main/CupCake "Cupcake link title")
-9. [Lunch Tray](https://github.com/azzumw/GoogleDeveloper/tree/main/LunchTray "Lunch link title")
-10. [MarsPhotos](https://github.com/azzumw/GoogleDeveloper/tree/main/MarsPhotos "MarsPhotos link title")
-11. [Amphibians](https://github.com/azzumw/GoogleDeveloper/tree/main/Amphibian "Amphibians link title")
-12. [Inventory](https://github.com/azzumw/GoogleDeveloper/tree/main/InventoryApp "Inventory link title")
-13. [BusScheduler](https://github.com/azzumw/GoogleDeveloper/tree/main/BusScheduler "BusScheduler link title")
-14. [Forage](https://github.com/azzumw/GoogleDeveloper/tree/main/ForageApp "Forage link title")
-15. [WaterMe](https://github.com/azzumw/GoogleDeveloper/tree/main/WaterMeProject "WaterMe link title")
+6. [Words](https://github.com/azzumw/GoogleDeveloper/tree/main/WordStage2 "Words link title") - Fragments, Navigation Component, Testing Navigation
+7. [UnScramble](https://github.com/azzumw/GoogleDeveloper/tree/main/Unscramble "UnScramble link title") - ViewModel & LiveData
+8. [Cupcake](https://github.com/azzumw/GoogleDeveloper/tree/main/CupCake "Cupcake link title") - Shared ViewModel & LiveData, Testing ViewModel & LiveData
+9. [Lunch Tray](https://github.com/azzumw/GoogleDeveloper/tree/main/LunchTray "Lunch link title") - Shared ViewModel & LiveData
+10. [MarsPhotos](https://github.com/azzumw/GoogleDeveloper/tree/main/MarsPhotos "MarsPhotos link title") - ViewModel, Co-routines, Retrofit, Moshi
+11. [Amphibians](https://github.com/azzumw/GoogleDeveloper/tree/main/Amphibian "Amphibians link title") - ViewModel, Co-routines, Retrofit, Moshi
+12. [Inventory](https://github.com/azzumw/GoogleDeveloper/tree/main/InventoryApp "Inventory link title") - Room, SQLite, ViewModel & LiveData
+13. [BusScheduler](https://github.com/azzumw/GoogleDeveloper/tree/main/BusScheduler "BusScheduler link title") - Room, SQLite, ViewModel & LiveData
+14. [Forage](https://github.com/azzumw/GoogleDeveloper/tree/main/ForageApp "Forage link title") - Room, SQLite, ViewModel & LiveData
+15. [WaterMe](https://github.com/azzumw/GoogleDeveloper/tree/main/WaterMeProject "WaterMe link title") - WorkManager, ViewModel
