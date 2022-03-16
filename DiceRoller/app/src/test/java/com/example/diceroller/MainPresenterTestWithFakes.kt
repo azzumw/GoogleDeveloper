@@ -3,7 +3,7 @@ package com.example.diceroller
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class MainPresenterTest {
+class MainPresenterTestWithFakes {
 
     private val dice = FakeDice()
     private val mainPresenter = MainPresenter(dice)
