@@ -5,7 +5,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
+import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -18,6 +18,7 @@ class MainPresenterTestWithMocks {
 
     @Before
     fun setUp() {
+//        dice = mock(Dice::class.java)
         mainPresenter = MainPresenter(dice)
     }
 
@@ -29,5 +30,7 @@ class MainPresenterTestWithMocks {
         val drawableID = mainPresenter.getDrawableIdForDice()
         //then
         Assert.assertEquals(R.drawable.dice_3, drawableID)
+
+        verify(dice, times(1)).roll()
     }
 }
